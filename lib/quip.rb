@@ -3,7 +3,7 @@ require 'unirest'
 class QuipClient
   def initialize(options)
     @access_token = options.fetch(:access_token)
-    @base_url = options.fetch(:base_url, 'https://platform.quip.com/1')
+    @base_url = 'https://platform.quip.com/1'
   end
 
   def get_authenticated_user
