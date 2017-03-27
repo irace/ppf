@@ -1,3 +1,4 @@
+
 class Week
   def self.next
     Week.new(Date.parse('Monday'))
@@ -24,24 +25,11 @@ class Week
     "#{start_date_string} - #{@end_date.month}/#{@end_date.day}"
   end
 
+  def contains(date)
+    date >= @start_date && date <= @end_date
+  end
+
 	def to_s
 		"#{super.to_s}: #{@start_date} - #{@end_date}"
 	end
-end
-
-class PPF
-  attr_reader :week, :first_name
-
-  def initialize(options)
-    @first_name = options.fetch(:first_name)
-    @week = options.fetch(:week)
-  end
-
-  def title
-    "#{@first_name}’s PPF (#{@week.date_range_string})"
-  end
-
-  def contents
-    template = File.open('ppf.md', 'rb').read
-  end
 end

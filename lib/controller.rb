@@ -1,30 +1,38 @@
 require 'nokogiri'
 
-class PreferQuipClient
-  def initialize(client)
-    @client = client
+class Controller
+  def initialize(quip, github)
+    @quip = client
+    @github = github
     @parent_folder_id = 'PeIAOAYg2AN'
   end
 
-  def create(ppf)
-    this_weeks_ppf_folder = find_or_create_ppf_folder(ppf.week)
+  def create(first_name, week)
+    # thread_html = @quip.get_thread('9aryA5mVrkyi')['html']
+    # puts thread_html
 
-    last_weeks_ppf = find_ppf_thread(ppf.week.previous, ppf.first_name))
+    this_weeks_ppf_folder = find_or_create_ppf_folder(week)
 
-    # TODO: ERB template this in. Try inserting into Markdown first. Else, convert template to HTML
-    plans_from_last_week = extract_plans_as_checklist(last_weeks_ppf)
+    last_weeks_ppf = find_ppf_thread(week.previous, first_name)
 
-    @client.create_document(ppf.contents, {
+    ppf = Document.new(
+      first_name: config['name'],
+      week: Week.next,
+      plans_from_last_week: extract_plans_as_checklist(last_weeks_ppf),
+      pull_requests: @github.get_pull_requests(week)
+    )
+
+    @quip.create_document(ppf.contents, {
       title: ppf.title,
       format: 'markdown',
-      member_ids: [this_weeks_ppf_folder['folder']['id']]
+      member_ids: ['WUYAOAUmDC9']#[this_weeks_ppf_folder['folder']['id']]
     })
 
     puts "Created '#{ppf.title}'!"
   end
 
   private def create_folder(title, parent_folder_id)
-    @client.create_folder({
+    @quip.create_folder({
       title: title,
       parent_id: parent_folder_id
     })
@@ -43,13 +51,13 @@ class PreferQuipClient
 
   private def find_ppf_folder(week)
     # TODO: Look this folder up from _it’s_ parent, based on the current year
-    parent_folder = @client.get_folder(@parent_folder_id)
+    parent_folder = @quip.get_folder(@parent_folder_id)
 
     children_ids = parent_folder['children'].map { |child|
       child['folder_id']
     }.join(',')
 
-    children_folders = @client.get_folders(children_ids)
+    children_folders = @quip.get_folders(children_ids)
 
     children_folders.values.find { |child|
       child['folder']['title'].include? week.start_date_string
@@ -63,7 +71,7 @@ class PreferQuipClient
       child['thread_id']
     }.join(',')
 
-    threads = @client.get_threads(children_ids)
+    threads = @quip.get_threads(children_ids)
 
     threads.values.find { |thread|
       thread['thread']['title'].include? first_name
@@ -90,11 +98,13 @@ class PreferQuipClient
   end
 
   private def convert_lists_to_checklists(html)
-    page = Nokogiri::HTML(html)
+    page = Nokogiri::HTML.fragment(html)
 
-    page.css('ul').each { |list|
-      list['class'] = 'checked'
+    page.css('li').each { |item|
+      item['class'] = 'checked'
     }
+
+    page.css('br').remove
 
     page
   end

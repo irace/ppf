@@ -47,7 +47,7 @@ class QuipClient
 
   private def post_json(path, data)
     Unirest.post("#{@base_url}/#{path}", headers: {
-      'Authorization' => "Bearer #{@access_token}"
+        'Authorization' => "Bearer #{@access_token}"
       },
       parameters: data
     ).body
