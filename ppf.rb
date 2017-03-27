@@ -2,7 +2,7 @@
 
 require 'yaml'
 require_relative 'lib/quip'
-require_relative 'lib/ppf'
+require_relative 'lib/models'
 require_relative 'lib/prefer'
 
 config = YAML.load_file('config.yml')
