@@ -19,4 +19,7 @@ controller = Controller.new(
   )
 )
 
-controller.create(first_name: config['name'], week: Week.next)
+controller.create(
+  first_name: config['first_name'], 
+  week: Week.next
+)

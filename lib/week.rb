@@ -1,4 +1,3 @@
-
 class Week
   def self.next
     Week.new(Date.parse('Monday'))

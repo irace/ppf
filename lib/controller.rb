@@ -31,19 +31,16 @@ class Controller
     puts "Created '#{ppf.title}'!"
   end
 
-  private def create_folder(title, parent_folder_id)
-    @quip.create_folder({
-      title: title,
-      parent_id: parent_folder_id
-    })
-  end
-
   private def find_or_create_ppf_folder(week)
     ppf_folder = find_ppf_folder(week)
 
     if ppf_folder.nil?
       puts 'PPF folder hasn’t been added yet. Creating it...'
-      ppf_folder = create_folder(ppf.week.folder_title, @parent_folder_id)
+
+      ppf_folder = @quip.create_folder({
+        title: week.folder_title,
+        parent_id: @parent_folder_id
+      })
     end
 
     ppf_folder
@@ -81,6 +78,8 @@ class Controller
   private def extract_plans_as_checklist(thread)
     convert_lists_to_checklists(extract_plans(thread))
   end
+
+  # TODO: Extract this out
 
   private def extract_plans(thread)
     def normalize_for_string_matching(element)
