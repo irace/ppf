@@ -11,13 +11,13 @@ class PreferQuipClient
 
     last_weeks_ppf = find_ppf_thread(ppf.week.previous, ppf.first_name))
 
-    # TODO: ERB template this in. Try Markdown first. Else, HTML
+    # TODO: ERB template this in. Try inserting into Markdown first. Else, convert template to HTML
     plans_from_last_week = extract_plans_as_checklist(last_weeks_ppf)
 
     @client.create_document(ppf.contents, {
-      :title => ppf.title,
-      :format => 'markdown',
-      :member_ids => [this_weeks_ppf_folder['folder']['id']]
+      title: ppf.title,
+      format: 'markdown',
+      member_ids: [this_weeks_ppf_folder['folder']['id']]
     })
 
     puts "Created '#{ppf.title}'!"
