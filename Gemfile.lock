@@ -4,6 +4,9 @@ GEM
     addressable (2.3.8)
     json (1.8.6)
     mime-types (1.25.1)
+    mini_portile2 (2.1.0)
+    nokogiri (1.7.0)
+      mini_portile2 (~> 2.1.0)
     rest-client (1.6.9)
       mime-types (~> 1.16)
     unirest (1.1.2)
@@ -15,6 +18,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  nokogiri!
   unirest!
 
 BUNDLED WITH

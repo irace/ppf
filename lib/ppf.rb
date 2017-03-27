@@ -1,38 +1,44 @@
-# http://stackoverflow.com/a/7930553/503916
-def date_of_next(day)
-  date = Date.parse(day)
-  delta = date > Date.today ? 0 : 7
-  date + delta
-end
-
-class PPF
-  attr_reader :start_date, :end_date, :first_name
-
-  def self.next(first_name)
-    # TODO: What would happen if you ran this on e.g. Saturday?
-    return PPF.new(
-      :first_name => first_name,
-      :start_date => date_of_next('Monday'),
-      :end_date => date_of_next('Sunday')
-    )
+class Week
+  def self.next
+    Week.new(Date.parse('Monday'))
   end
 
-  def initialize(options)
-    @first_name = options.fetch(:first_name)
-    @start_date = options.fetch(:start_date)
-    @end_date = options.fetch(:end_date)
-  end
+	def initialize(start_date)
+		@start_date = start_date
+		@end_date = start_date + Date::DAYNAMES.count - 1
+	end
 
-  def date_range
-    "#{start_date.month}/#{start_date.day} - #{end_date.month}/#{end_date.day}"
+	def previous
+		Week.new(@start_date - Date::DAYNAMES.count)
+	end
+
+  def start_date_string
+    "#{@start_date.month}/#{@start_date.day}"
   end
 
   def folder_title
-    "Week of #{date_range}"
+    "Week of #{date_range_string}"
+  end
+
+  def date_range_string
+    "#{start_date_string} - #{@end_date.month}/#{@end_date.day}"
+  end
+
+	def to_s
+		"#{super.to_s}: #{@start_date} - #{@end_date}"
+	end
+end
+
+class PPF
+  attr_reader :week, :first_name
+
+  def initialize(options)
+    @first_name = options.fetch(:first_name)
+    @week = options.fetch(:week)
   end
 
   def title
-    "#{first_name}’s PPF (#{date_range})"
+    "#{@first_name}’s PPF (#{@week.date_range_string})"
   end
 
   def contents

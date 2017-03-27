@@ -1,8 +1,6 @@
 require 'unirest'
 
 class QuipClient
-  attr_reader :access_token, :base_url
-
   def initialize(options)
     @access_token = options.fetch(:access_token)
     @base_url = options.fetch(:base_url, 'https://platform.quip.com/1')
@@ -22,7 +20,15 @@ class QuipClient
   end
 
   def create_folder(options)
-    .post_json('folders/new', options)
+    post_json('folders/new', options)
+  end
+
+  def get_thread(id)
+    get_json("threads/#{id}")
+  end
+
+  def get_threads(ids)
+    get_json("threads/?ids=#{ids}")
   end
 
   def get_folder(id)
@@ -33,20 +39,17 @@ class QuipClient
     get_json("folders/?ids=#{ids}")
   end
 
-  def get_json(path)
-    response = Unirest.get("#{base_url}/#{path}", headers: {
-      'Authorization' => "Bearer #{access_token}"
-    })
-
-    response.body
+  private def get_json(path)
+    Unirest.get("#{@base_url}/#{path}", headers: {
+      'Authorization' => "Bearer #{@access_token}"
+    }).body
   end
 
-  def post_json(path, data)
-    response = Unirest.post("#{base_url}/#{path}", headers: {
-      'Authorization' => "Bearer #{access_token}" },
+  private def post_json(path, data)
+    Unirest.post("#{@base_url}/#{path}", headers: {
+      'Authorization' => "Bearer #{@access_token}"
+      },
       parameters: data
-    )
-
-    response.body
+    ).body
   end
 end

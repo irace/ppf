@@ -1,4 +1,5 @@
 #!/usr/bin/ruby
+
 require 'yaml'
 require_relative 'lib/client'
 require_relative 'lib/ppf'
@@ -8,6 +9,9 @@ config = YAML.load_file('config.yml')
 
 client = PreferQuipClient.new(QuipClient.new(access_token: config['quip_api_token']))
 
-ppf = PPF.next(config['name'])
+ppf = PPF.new(
+  :first_name => config['name'],
+  :week => Week.next
+)
 
 client.create(ppf)
