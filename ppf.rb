@@ -10,16 +10,16 @@ config = YAML.load_file('config.yml')
 
 controller = Controller.new(
   QuipClient.new(
-    access_token: config['quip_api_token']
+    access_token: config['quip.api_token']
   ),
   GitHubClient.new(
-    access_token: config['github_api_token'],
-    repository: config['github_repository'],
-    user: config['github_user_name']
+    access_token: config['github.api_token'],
+    repository: config['github.repository'],
+    user: config['github.user_name']
   )
 )
 
 controller.create(
-  first_name: config['first_name'], 
+  first_name: config['user.first_name'],
   week: Week.next
 )

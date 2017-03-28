@@ -13,6 +13,10 @@ class Controller
 
     this_weeks_ppf_folder = find_or_create_ppf_folder(week)
 
+    # TODO: https://developers.google.com/google-apps/calendar/quickstart/ruby
+
+    # TODO: https://clubhouse.io/api/v1/#stories
+
     last_weeks_ppf = find_ppf_thread(week.previous, first_name)
 
     ppf = Document.new(
@@ -21,6 +25,8 @@ class Controller
       plans_from_last_week: extract_plans_as_checklist(last_weeks_ppf),
       pull_requests: @github.get_pull_requests(week)
     )
+
+    # TODO: Option for private vs. public location
 
     @quip.create_document(ppf.contents, {
       title: ppf.title,
