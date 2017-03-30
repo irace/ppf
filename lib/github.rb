@@ -1,4 +1,31 @@
 require 'unirest'
+require 'nokogiri'
+
+class Screenshot
+  attr_accessor :name, :URL
+
+  def initialize(options)
+    @name = options.fetch(:name)
+    @URL = options.fetch(:URL)
+  end
+end
+
+class PullRequest
+  attr_accessor :title, :URL, :screenshots
+
+  def initialize(json)
+    @title = json['title']
+    @URL = json['url']
+    @screenshots = extract_screenshots(json['body'])
+  end
+
+  private def extract_screenshots(html)
+    page = Nokogiri::HTML.fragment(html)
+    page.css('img').each_with_index.map { |img, index|
+      Screenshot.new(name: index + 1, URL: img['src'])
+    }
+  end
+end
 
 class GitHubClient
   def initialize(options)
@@ -15,13 +42,15 @@ class GitHubClient
       sort: 'updated',
       direction: 'desc'
     })
-    .select { |pr|
-      pr['user']['login'] == @user
+    .select { |json|
+      json['user']['login'] == @user
     }
-    .select { |pr|
-      merge_date = pr['merged_at']
+    .select { |json|
+      merge_date = json['merged_at']
 
       !merge_date.nil? && week.contains(Date.parse(merge_date))
+    }.map { |json|
+      PullRequest.new(json)
     }
   end
 

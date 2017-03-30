@@ -6,12 +6,7 @@ class Document
     @week = options.fetch(:week)
     @plans_from_last_week = options.fetch(:plans_from_last_week)
     @pull_requests = options.fetch(:pull_requests)
-
-    prs.each { |pr|
-      puts "#{pr['title']} - #{pr['merged_at']} - (#{pr['url']})"
-    }
-
-    ## TODO: Create `PullRequest` model object
+    @stories = options.fetch(:stories)
   end
 
   def title
@@ -19,10 +14,6 @@ class Document
   end
 
   def contents
-    # TODO: Not entirely sure this is necessary
-    plans_from_last_week = @plans_from_last_week
-    pull_requests = @pull_requests
-
     template = ERB.new(File.read('template.erb'), nil, '-')
 
     template.result(binding)
