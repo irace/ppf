@@ -12,7 +12,6 @@ class Controller
   # puts thread_html
 
   # TODO: https://developers.google.com/google-apps/calendar/quickstart/ruby
-  # TODO: https://clubhouse.io/api/v1/#stories
 
   def create(options)
     first_name = options.fetch(:first_name)
