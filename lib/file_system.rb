@@ -12,7 +12,7 @@ class FileSystem
     @quip.create_document(ppf.contents, {
       title: ppf.title,
       format: 'markdown',
-      member_ids: ['WUYAOAUmDC9']#[folder['folder']['id']]
+      member_ids: [folder['folder']['id']]
     })
   end
 
@@ -34,7 +34,7 @@ class FileSystem
     }
   end
 
-  private def find_or_create_ppf_folder(week)
+  def find_or_create_ppf_folder(week)
     ppf_folder = find_ppf_folder(week)
 
     if ppf_folder.nil?

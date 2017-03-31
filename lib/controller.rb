@@ -19,7 +19,7 @@ class Controller
       first_name: first_name,
       week: week,
       plans_from_last_week: PPFReader.new(last_ppf).plans_as_checklist,
-      pull_requests: @github.get_pull_requests(week),
+      pull_requests: @github.get_pull_requests(week.previous),
       stories: @clubhouse.get_stories
     )
 

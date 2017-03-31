@@ -1,6 +1,10 @@
 class Week
   def self.next
-    Week.new(Date.parse('Monday'))
+    monday = Date.parse('Monday')
+    delta = monday > Date.today ? 0 : 7
+    monday = monday + delta
+
+    Week.new(monday)
   end
 
 	def initialize(start_date)
