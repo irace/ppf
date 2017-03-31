@@ -1,9 +1,12 @@
 # PPF
 
-A script for helping bootstrap your weekly PPF. Currently supports integrating with:
+A script for helping bootstrap your weekly PPF.
 
-* GitHub
-* Clubhouse
+- [PPF](#ppf)
+	- [Usage](#usage)
+	- [Configuration](#configuration)
+		- [Template](#template)
+	- [Assumptions](#assumptions)
 
 ## Usage
 
@@ -11,10 +14,6 @@ A script for helping bootstrap your weekly PPF. Currently supports integrating w
 ./bin/ppf               # Creates in the public folder for the upcoming week
 ./bin/ppf --private     # Creates in your private user folder
 ```
-
-### Assumptions
-
-This script assumes that you use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**, and that **Plans** is always the second heading. Additionally, this script assumes that your **Plans** section is comprised of unordered list items (aka `li`).
 
 ## Configuration
 
@@ -45,3 +44,9 @@ You can create a Quip API token [here](https://interface.quip.com/api/personal-t
 ### Template
 
 You can customize `template.erb` in order to have your PPF come out looking like however you want it to
+
+## Assumptions
+
+This script assumes that you use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**, and that **Plans** is always the second heading. Additionally, this script assumes that your **Plans** section is comprised of unordered list items (aka `li`).
+
+![screen shot 2017-03-31 at 2 42 14 pm](https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png)
