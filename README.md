@@ -38,7 +38,9 @@ clubhouse:
 ```
 
 You can create a GitHub API token [here](https://github.com/settings/tokens).
+
 You can create a Clubhouse API token [here](https://app.clubhouse.io/prefer/settings/account/api-tokens).
+
 You can create a Quip API token [here](https://interface.quip.com/api/personal-token).
 
 ### Template
