@@ -9,6 +9,8 @@ A script for helping bootstrap your weekly PPF.
 
 ## Usage
 
+First, run `bundle install` to install dependencies. Then:
+
 ```bash
 ./bin/ppf                      # Creates in the public folder for the upcoming week
 ./bin/ppf --private            # Creates in your private user folder
