@@ -35,13 +35,14 @@ clubhouse:
 ```
 
 You can create a GitHub API token [here](https://github.com/settings/tokens).
+
 You can create a Clubhouse API token [here](https://app.clubhouse.io/prefer/settings/account/api-tokens).
+
 You can create a Quip API token [here](https://interface.quip.com/api/personal-token).
 
 ### Template
 
-You can customize `template.erb` in order to have your PPF come out looking like however you want it to
-
+You can customize `template.erb` in order to have your document look however you want it to.
 
 ### Assumptions
 
