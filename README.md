@@ -8,8 +8,8 @@ A script for helping bootstrap your weekly PPF. Currently supports integrating w
 ## Usage
 
 ```bash
-./bin/ppf # Creates in the public folder for the upcoming week
-./bin/ppf --private # Creates in your private user folder
+./bin/ppf               # Creates in the public folder for the upcoming week
+./bin/ppf --private     # Creates in your private user folder
 ```
 
 ### Assumptions
@@ -37,6 +37,10 @@ clubhouse:
   owner_id: 57a4f19f-8f40-413f-888b-624c05b391ab
   workflow_state_ids: [500000011, 500000015]
 ```
+
+You can create a GitHub API token [here](https://github.com/settings/tokens).
+You can create a Clubhouse API token [here](https://app.clubhouse.io/prefer/settings/account/api-tokens).
+You can create a Quip API token [here](https://interface.quip.com/api/personal-token).
 
 ### Template
 

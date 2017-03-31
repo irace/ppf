@@ -14,7 +14,7 @@ class Document
   end
 
   def contents
-    template = ERB.new(File.read('template.erb'), nil, '-')
+    template = ERB.new(File.read('lib/template.erb'), nil, '-')
 
     template.result(binding)
   end
