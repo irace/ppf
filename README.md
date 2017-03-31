@@ -2,17 +2,16 @@
 
 A script for helping bootstrap your weekly PPF.
 
-- [PPF](#ppf)
-	- [Usage](#usage)
-	- [Configuration](#configuration)
-		- [Template](#template)
-	- [Assumptions](#assumptions)
+- [Usage](#usage)
+- [Configuration](#configuration)
+	- [Template](#template)
+- [Assumptions](#assumptions)
 
 ## Usage
 
 ```bash
-./bin/ppf               # Creates in the public folder for the upcoming week
-./bin/ppf --private     # Creates in your private user folder
+./bin/ppf                      # Creates in the public folder for the upcoming week
+./bin/ppf --private            # Creates in your private user folder
 ```
 
 ## Configuration
@@ -49,6 +48,13 @@ You can customize `template.erb` in order to have your PPF come out looking like
 
 ## Assumptions
 
-This script assumes that you use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**, and that **Plans** is always the second heading. Additionally, this script assumes that your **Plans** section is comprised of unordered list items (aka `li`).
+This script assumes that:
 
-![screen shot 2017-03-31 at 2 42 14 pm](https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png)
+* You use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**
+* **Plans** is always the second heading
+* Your **Plans** section is comprised of unordered list items (aka `li`)
+
+For example:
+
+<center>
+![screen shot 2017-03-31 at 2 42 14 pm](https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png)</center>
