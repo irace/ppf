@@ -46,7 +46,7 @@ You can create a Quip API token [here](https://interface.quip.com/api/personal-t
 
 ### Template
 
-You can customize `template.erb` in order to have your PPF come out looking like however you want it to
+You can customize [`template.erb`](https://github.com/irace/ppf/blob/master/lib/template.erb) in order to have your PPF come out looking like however you want it to
 
 ## Assumptions
 
