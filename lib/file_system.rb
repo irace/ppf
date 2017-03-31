@@ -16,6 +16,10 @@ class FileSystem
     })
   end
 
+  def find_private_folder
+    @quip.get_authenticated_user['private_folder_id']
+  end
+
   def find_ppf_thread(options)
     folder = find_ppf_folder(options.fetch(:week))
 

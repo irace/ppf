@@ -8,14 +8,10 @@ class Controller
     @clubhouse = clubhouse
   end
 
-  # thread_html = @quip.get_thread('9aryA5mVrkyi')['html']
-  # puts thread_html
-
-  # TODO: https://developers.google.com/google-apps/calendar/quickstart/ruby
-
   def create(options)
     first_name = options.fetch(:first_name)
     week = options.fetch(:week)
+    in_private_directory = options.fetch(:in_private_directory)
 
     last_ppf = @file_system.find_ppf_thread(week: week.previous, first_name: first_name)
 
@@ -27,13 +23,13 @@ class Controller
       stories: @clubhouse.get_stories
     )
 
-    puts ppf.contents
+    folder = in_private_directory ? @file_system.find_private_folder : @file_system.find_or_create_ppf_folder(week)
 
-    # @file_system.create_ppf(
-    #   document: ppf,
-    #   folder: @file_system.find_or_create_ppf_folder(week) # TODO: Option for private vs. public location
-    # )
+    @file_system.create_ppf(
+      document: ppf,
+      folder: folder
+    )
 
-    #puts "Created '#{ppf.title}'!"
+    puts "Created '#{ppf.title}'!"
   end
 end

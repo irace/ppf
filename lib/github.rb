@@ -15,7 +15,7 @@ class PullRequest
 
   def initialize(json)
     @title = json['title']
-    @URL = json['url']
+    @URL = json['html_url']
     @screenshots = extract_screenshots(json['body'])
   end
 
