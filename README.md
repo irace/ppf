@@ -14,7 +14,11 @@ A script for helping bootstrap your weekly PPF. Currently supports integrating w
 
 ### Assumptions
 
-This script assumes that you use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**, and that **Plans** is always the second heading. Additionally, this script assumes that your **Plans** section is comprised of unordered list items (aka `li`).
+This script assumes that:
+
+* You use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**
+* **Plans** is always the second medium heading
+* Your **Plans** section is comprised of unordered list items (aka `li`)
 
 ## Configuration
 
