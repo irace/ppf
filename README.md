@@ -56,5 +56,4 @@ This script assumes that:
 
 For example:
 
-<center>
-![screen shot 2017-03-31 at 2 42 14 pm](https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png)</center>
+<center><img src="https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png"></center>
