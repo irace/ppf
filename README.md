@@ -12,14 +12,6 @@ A script for helping bootstrap your weekly PPF. Currently supports integrating w
 ./bin/ppf --private     # Creates in your private user folder
 ```
 
-### Assumptions
-
-This script assumes that:
-
-* You use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**
-* **Plans** is always the second medium heading
-* Your **Plans** section is comprised of unordered list items (aka `li`)
-
 ## Configuration
 
 First, you must create a `config.yml` file that includes the following values:
@@ -49,3 +41,12 @@ You can create a Quip API token [here](https://interface.quip.com/api/personal-t
 ### Template
 
 You can customize `template.erb` in order to have your PPF come out looking like however you want it to
+
+
+### Assumptions
+
+This script assumes that:
+
+* You use Quip’s medium headings (aka `<h2>`) for your PPFs’ section headers, e.g. **Progress**, **Plans**, and **Fires**
+* **Plans** is always the second medium heading
+* Your **Plans** section is comprised of unordered list items (aka `li`)
