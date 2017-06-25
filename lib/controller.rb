@@ -15,10 +15,16 @@ class Controller
 
     last_ppf = @file_system.find_ppf_thread(week: week.previous, first_name: first_name)
 
+    unless last_ppf.nil?
+      plans_from_last_week = PPFReader.new(last_ppf).plans_as_checklist
+    else
+      plans_from_last_week = nil
+    end
+
     ppf = Document.new(
       first_name: first_name,
       week: week,
-      plans_from_last_week: PPFReader.new(last_ppf).plans_as_checklist,
+      plans_from_last_week: plans_from_last_week,
       pull_requests: @github.get_pull_requests(week.previous),
       stories: @clubhouse.get_stories
     )
