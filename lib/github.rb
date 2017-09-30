@@ -30,18 +30,20 @@ end
 class GitHubClient
   def initialize(options)
     @access_token = options.fetch(:access_token)
-    @repository = options.fetch(:repository)
+    @repositories = options.fetch(:repositories)
     @user = options.fetch(:user)
     @base_url = 'https://api.github.com/repos'
   end
 
   def get_pull_requests(week)
-    prs = get_json("#{@repository}/pulls", {
-      per_page: 50,
-      state: 'closed',
-      sort: 'updated',
-      direction: 'desc'
-    })
+    prs = @repositories.flat_map { |repository|
+      get_json("#{repository}/pulls", {
+        per_page: 50,
+        state: 'closed',
+        sort: 'updated',
+        direction: 'desc'
+      })
+    }
     .select { |json|
       json['user']['login'] == @user
     }

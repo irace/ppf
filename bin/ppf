@@ -35,7 +35,7 @@ controller = Controller.new(
   ),
   GitHubClient.new(
     access_token: config['github']['api_token'],
-    repository: config['github']['repository'],
+    repositories: config['github']['repositories'],
     user: config['github']['user_name']
   ),
   ClubhouseClient.new(
