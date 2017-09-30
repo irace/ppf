@@ -1,6 +1,6 @@
 # PPF
 
-A script for helping bootstrap your weekly PPF.
+A script for helping bootstrap your weekly [PPF](https://en.wikipedia.org/wiki/Progress,_plans,_problems) report.
 
 - [Usage](#usage)
 - [Configuration](#configuration)
