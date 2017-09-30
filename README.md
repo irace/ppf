@@ -29,7 +29,7 @@ quip:
 
 github:
   api_token: <YOUR TOKEN HERE>
-  repository: prefer/iOS
+  repositories: [prefer/iOS, prefer/frontend]
   user_name: irace
 
 clubhouse:
