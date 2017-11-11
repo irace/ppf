@@ -27,22 +27,34 @@ end.parse!
 
 config = YAML.load_file('config.yml')
 
+github = if config['github']
+  GitHubClient.new(
+    access_token: config['github']['api_token'],
+    repositories: config['github']['repositories'],
+    user: config['github']['user_name']
+  )
+else
+  nil
+end
+
+clubhouse = if config['clubhouse'] 
+  ClubhouseClient.new(
+    access_token: config['clubhouse']['api_token'],
+    owner_id: config['clubhouse']['owner_id'],
+    workflow_state_ids: config['clubhouse']['workflow_state_ids']
+  )
+else
+  nil
+end
+
 controller = Controller.new(
   FileSystem.new(
     QuipClient.new(
       access_token: config['quip']['api_token']
     )
   ),
-  GitHubClient.new(
-    access_token: config['github']['api_token'],
-    repositories: config['github']['repositories'],
-    user: config['github']['user_name']
-  ),
-  ClubhouseClient.new(
-    access_token: config['clubhouse']['api_token'],
-    owner_id: config['clubhouse']['owner_id'],
-    workflow_state_ids: config['clubhouse']['workflow_state_ids']
-  )
+  github,
+  clubhouse
 )
 
 controller.create(

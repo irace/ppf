@@ -4,8 +4,10 @@
 
 ### Engineering
 
-<%- @pull_requests.each do |pr| -%>
+<%- if @stories -%>
+<%- @stories.each do |pr| -%>
 * [<%= pr.title %>](<%= pr.URL %>) <%- if pr.screenshots.any? -%>(Screenshots: <%= pr.screenshots.map { |screenshot| "[#{screenshot.name}](#{screenshot.URL})" }.join(',') %>)<% end %>
+<% end %>
 <% end %>
 
 ### Recruiting
@@ -16,8 +18,10 @@
 
 ### Engineering
 
+<%- if @stories -%>
 <%- @stories.each do |story| -%>
 * [<%= story.title %>](<%= story.URL %>)
+<% end %>
 <% end %>
 
 ### Recruiting
