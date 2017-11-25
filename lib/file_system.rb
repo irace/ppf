@@ -25,12 +25,12 @@ class FileSystem
 
     children_ids = folder['children'].map { |child|
       child['thread_id']
-    }.join(',')
+    }.reject { |id| id.nil? }.join(',')
 
     threads = @quip.get_threads(children_ids)
 
     threads.values.find { |thread|
-      thread['thread']['title'].include? options.fetch(:first_name)
+      thread['thread']['title'].include? options.fetch(:first_name) 
     }
   end
 
