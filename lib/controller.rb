@@ -31,10 +31,12 @@ class Controller
 
     folder = in_private_directory ? @file_system.find_private_folder : @file_system.find_or_create_ppf_folder(week)
 
-    @file_system.create_ppf(
+    response = @file_system.create_ppf(
       document: ppf,
       folder: folder
     )
+
+    `open #{response['thread']['link']}`
 
     puts "Created '#{ppf.title}'!"
   end
