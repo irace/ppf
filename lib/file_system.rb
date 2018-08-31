@@ -23,6 +23,8 @@ class FileSystem
   def find_ppf_thread(options)
     folder = find_ppf_folder(options.fetch(:week))
 
+    return nil if folder.nil?
+
     children_ids = folder['children'].map { |child|
       child['thread_id']
     }.reject { |id| id.nil? }.join(',')
