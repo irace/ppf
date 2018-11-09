@@ -55,9 +55,10 @@ class FileSystem
     # TODO: Look this folder up from _it’s_ parent, based on the current year
     parent_folder = @quip.get_folder(@parent_folder_id)
 
-    children_ids = parent_folder['children'].map { |child|
-      child['folder_id']
-    }.join(',')
+    children_ids = parent_folder['children']
+      .map    { |child| child['folder_id'] }
+      .reject { |child| child.nil? }
+      .join(',')
 
     children_folders = @quip.get_folders(children_ids)
 
