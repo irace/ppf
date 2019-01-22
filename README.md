@@ -59,3 +59,8 @@ This script assumes that:
 For example:
 
 <center><img src="https://cloud.githubusercontent.com/assets/399560/24564698/ccc69bf2-1620-11e7-80b7-fc584130e7ee.png"></center>
+
+
+## License
+
+Available for use under the MIT license: [http://bryan.mit-license.org](http://bryan.mit-license.org)
